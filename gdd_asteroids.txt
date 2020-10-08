@@ -1,0 +1,43 @@
+Description:
+The player controls a spaceship which can move around the screen. The spaceship has to avoid
+the asteroids that pop up in the screen, and can destroy them by shooting at them, at which
+point they split into smaller asteroids. each asteroid has a chance of having an enemy spaceship
+inside. when freed by destroying the asteroid, it flies around and tries to shoot the player.
+(+ asteroids might also sometimes drop bonuses like heal or different weapons)
+
+Speed of asteroids is kept constant (or can slowly decrease to a given lower bound).
+Speed of ships decreases towards zero, propelling forward will sharply increase it.
+
+Elements:
+player: position (+ hp, ammo and weapon type)
+asteroid: position, speed, design
+enemy: an instance of player controlled by AI
+hud: score (+ hp / ammo count and type)
+(+ weapon)
+missile: position, speed, time to live (decreases each frame before missile disappears)
+
+Controls:
+Turn L/R, Thrust forward, Shoot (+ change weapon)
+
+AI:
+flies in the direction of the player, keeps some distance, in random intervals fires its weapon
+at the players current location
+
+Graphics:
+Black background, asteroids as white outlines, ship as white lines assembled in a ship-like pattern
+Propelling will cause more lines to appear behind the ship, these could be animated
+Shots are simple short lines/dots
+Can be made from shapes programatically or as bitmaps (objects arent rectangular and bmp doesnt
+allow for transparency - issues with bounding boxes and rendering, but these might only be small
+and not noticeable)
+
+Filesystem:
+Highscore tables (Name:score) are kept in a file and shown on main screen
+(+ serialize and deserialize levels as json)
+
+Optional ideas:
+More enemy variants
+JSON
+
+
+Collisions: default - iterate over all objects, optional - collision array with local resolution
